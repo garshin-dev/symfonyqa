@@ -1,0 +1,63 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Register{% endblock %}
+
+{% block body %}
+    <style>
+        form {
+            margin-left: 20px;
+            margin-top: 100px;
+            display: flex;
+            flex-direction: column;
+            width: 300px;
+            height: 300px;
+            justify-content: center;
+        }
+
+        h1 {
+            text-align: center;
+            color: #2aff00;
+        }
+
+        label {
+            color: #00bcff;
+            font-size: 25px;
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+
+        input {
+            margin-bottom: 15px;
+            padding: 5px;
+            border: 3px solid #fff;
+            background-color: #27141461;
+            color: #fff;
+            font-size: 22px;
+            font-weight: bold;
+        }
+
+        button {
+            font-size: 25px;
+            font-weight: 700;
+            padding: 10px;
+            border: none;
+            background-color: #7fff5f;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #47ff1e;
+        }
+    </style>
+
+    <h1>Register</h1>
+
+    {{ form_start(registrationForm) }}
+        {{ form_row(registrationForm.email) }}
+        {{ form_row(registrationForm.name) }}
+        {{ form_row(registrationForm.plainPassword) }}
+        {{ form_row(registrationForm.agreeTerms) }}
+
+        <button class="btn">Register</button>
+    {{ form_end(registrationForm) }}
+{% endblock %}
