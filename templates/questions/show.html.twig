@@ -1,0 +1,34 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Questions{% endblock %}
+
+{% block body %}
+    <h1>Questions</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ question.id }}</td>
+            </tr>
+            <tr>
+                <th>Title</th>
+                <td>{{ question.title }}</td>
+            </tr>
+            <tr>
+                <th>Text</th>
+                <td>{{ question.text }}</td>
+            </tr>
+            <tr>
+                <th>Category</th>
+                <td>{{ question.category }}</td>
+            </tr>
+            <tr>
+                <th>Date</th>
+                <td>{{ question.date ? question.date|date('Y-m-d') : '' }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('questions_index') }}">back to list</a>
+{% endblock %}

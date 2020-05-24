@@ -1,0 +1,115 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Вопросы{% endblock %}
+
+{% block body %}
+    <style>
+        .questionsLink:after {
+            content: "";
+            width: 100%;
+            height: 3px;
+            background-color: #36404A;
+            position: absolute;
+            bottom: 0;
+            left: 0;
+        }
+
+        .titleText {
+            color: #fff;
+            margin: 30px 0;
+        }
+
+        .block-bottom {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .date_output {
+            color: #ff3838;
+            font-weight: bold;
+        }
+
+        .card {
+            margin-right: 30px;
+            margin-bottom: 30px;
+            width: 15rem;
+        }
+
+        .createNew {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: #00d41a;
+            width: 240px;
+            height: 180px;
+            color: #fff;
+            font-weight: bold;
+            font-size: 20px;
+            text-decoration: none;
+        }
+
+        .createNew:hover {
+            text-decoration: none;
+            background-color: #18f332;
+            color: #fff;
+        }
+        </style>
+
+    <div class="container">
+        <h1 class="titleText">Вопросы:</h1>
+        <div class="row">
+            {% for question in questions %}
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title text-center">{{ question.title }}</h5>
+                    <p class="card-text">Количество ответов: 2</p>
+                </div>
+                <div class="card-body block-bottom">
+                    <a href="{{ path('questions_show', {'id': question.id}) }}" class="btn btn-primary">Перейти</a>
+                    <div class="date_output">{{ question.date ? question.date|date('Y-m-d') : '' }}</div>
+                </div>
+            </div>
+        {% else %}
+            <div>Нет вопросов!</div>
+        {% endfor %}
+            {% if is_granted('IS_AUTHENTICATED_FULLY') %}
+                <a href="{{ path('questions_new') }}" class="createNew">Задать новый вопрос</a>
+            {% endif %}
+        </div>
+    </div>
+
+{# Other#}
+
+{#    <h1>Answers index</h1>#}
+
+{#    <table class="table">#}
+{#        <thead>#}
+{#        <tr>#}
+{#            <th>Id</th>#}
+{#            <th>Answer_text</th>#}
+{#            <th>Answer_date</th>#}
+{#            <th>actions</th>#}
+{#        </tr>#}
+{#        </thead>#}
+{#        <tbody>#}
+{#        {% for answer in answers %}#}
+{#            <tr>#}
+{#                <td>{{ answer.id }}</td>#}
+{#                <td>{{ answer.answerText }}</td>#}
+{#                <td>{{ answer.answerDate ? answer.answerDate|date('Y-m-d') : '' }}</td>#}
+{#                <td>#}
+{#                    <a href="{{ path('answers_show', {'id': answer.id}) }}">show</a>#}
+{#                    <a href="{{ path('answers_edit', {'id': answer.id}) }}">edit</a>#}
+{#                </td>#}
+{#            </tr>#}
+{#        {% else %}#}
+{#            <tr>#}
+{#                <td colspan="4">no records found</td>#}
+{#            </tr>#}
+{#        {% endfor %}#}
+{#        </tbody>#}
+{#    </table>#}
+
+{#    <a href="{{ path('answers_new') }}">Create new</a>#}
+{% endblock %}
