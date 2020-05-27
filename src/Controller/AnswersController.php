@@ -31,6 +31,7 @@ class AnswersController extends AbstractController
     public function new(Request $request): Response
     {
         $answer = new Answers();
+        $answer->setUsers($this->getUser());
         $form = $this->createForm(AnswersType::class, $answer);
         $form->handleRequest($request);
 
@@ -56,39 +57,5 @@ class AnswersController extends AbstractController
         return $this->render('answers/show.html.twig', [
             'answer' => $answer,
         ]);
-    }
-
-    /**
-     * @Route("/{id}/edit", name="answers_edit", methods={"GET","POST"})
-     */
-    public function edit(Request $request, Answers $answer): Response
-    {
-        $form = $this->createForm(AnswersType::class, $answer);
-        $form->handleRequest($request);
-
-        if ($form->isSubmitted() && $form->isValid()) {
-            $this->getDoctrine()->getManager()->flush();
-
-            return $this->redirectToRoute('answers_index');
-        }
-
-        return $this->render('answers/edit.html.twig', [
-            'answer' => $answer,
-            'form' => $form->createView(),
-        ]);
-    }
-
-    /**
-     * @Route("/{id}", name="answers_delete", methods={"DELETE"})
-     */
-    public function delete(Request $request, Answers $answer): Response
-    {
-        if ($this->isCsrfTokenValid('delete'.$answer->getId(), $request->request->get('_token'))) {
-            $entityManager = $this->getDoctrine()->getManager();
-            $entityManager->remove($answer);
-            $entityManager->flush();
-        }
-
-        return $this->redirectToRoute('answers_index');
     }
 }

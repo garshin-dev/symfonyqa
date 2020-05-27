@@ -167,18 +167,18 @@ class User implements UserInterface
         return $this;
     }
 
-    public function removeQuestion(Questions $question): self
-    {
-        if ($this->questions->contains($question)) {
-            $this->questions->removeElement($question);
-            // set the owning side to null (unless already changed)
-            if ($question->getUsers() === $this) {
-                $question->setUsers(null);
-            }
-        }
-
-        return $this;
-    }
+//    public function removeQuestion(Questions $question): self
+//    {
+//        if ($this->questions->contains($question)) {
+//            $this->questions->removeElement($question);
+//            // set the owning side to null (unless already changed)
+//            if ($question->getUsers() === $this) {
+//                $question->setUsers(null);
+//            }
+//        }
+//
+//        return $this;
+//    }
 
     /**
      * @return Collection|Answers[]
@@ -198,18 +198,18 @@ class User implements UserInterface
         return $this;
     }
 
-    public function removeAnswer(Answers $answer): self
-    {
-        if ($this->answers->contains($answer)) {
-            $this->answers->removeElement($answer);
-            // set the owning side to null (unless already changed)
-            if ($answer->getUsers() === $this) {
-                $answer->setUsers(null);
-            }
-        }
-
-        return $this;
-    }
+//    public function removeAnswer(Answers $answer): self
+//    {
+//        if ($this->answers->contains($answer)) {
+//            $this->answers->removeElement($answer);
+//            // set the owning side to null (unless already changed)
+//            if ($answer->getUsers() === $this) {
+//                $answer->setUsers(null);
+//            }
+//        }
+//
+//        return $this;
+//    }
 
     public function __toString()
     {

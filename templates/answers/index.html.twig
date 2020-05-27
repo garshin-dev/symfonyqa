@@ -22,7 +22,6 @@
                 <td>{{ answer.answerDate ? answer.answerDate|date('Y-m-d') : '' }}</td>
                 <td>
                     <a href="{{ path('answers_show', {'id': answer.id}) }}">show</a>
-                    <a href="{{ path('answers_edit', {'id': answer.id}) }}">edit</a>
                 </td>
             </tr>
         {% else %}

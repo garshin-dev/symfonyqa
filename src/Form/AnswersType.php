@@ -13,9 +13,6 @@ class AnswersType extends AbstractType
     {
         $builder
             ->add('answer_text')
-            ->add('answer_date')
-            ->add('users')
-            ->add('questions')
         ;
     }
 

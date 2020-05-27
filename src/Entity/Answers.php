@@ -28,15 +28,20 @@ class Answers
 
     /**
      * @ORM\ManyToOne(targetEntity="App\Entity\User", inversedBy="answers")
-     * @ORM\JoinColumn(nullable=false)
+     * @ORM\JoinColumn(nullable=false, name="users_id", referencedColumnName="id")
      */
     private $users;
 
     /**
      * @ORM\ManyToOne(targetEntity="App\Entity\Questions", inversedBy="answers")
-     * @ORM\JoinColumn(nullable=false)
+     * @ORM\JoinColumn(nullable=false, name="questions_id", referencedColumnName="id")
      */
     private $questions;
+
+    public function __construct()
+    {
+        $this->answer_date = new \DateTime();
+    }
 
     public function getId(): ?int
     {
@@ -89,5 +94,10 @@ class Answers
         $this->questions = $questions;
 
         return $this;
+    }
+
+    public function __toString()
+    {
+        return $this->getAnswerText();
     }
 }

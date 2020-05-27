@@ -5,6 +5,7 @@ namespace App\Entity;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Security\Core\User\UserInterface;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\QuestionsRepository")
@@ -40,8 +41,9 @@ class Questions
 
     /**
      * @ORM\ManyToOne(targetEntity="App\Entity\User", inversedBy="questions")
-     * @ORM\JoinColumn(nullable=false)
+     * @ORM\JoinColumn(nullable=false, name="users_id", referencedColumnName="id")
      */
+
     private $users;
 
     /**
@@ -52,6 +54,7 @@ class Questions
     public function __construct()
     {
         $this->answers = new ArrayCollection();
+        $this->date = new \DateTime();
     }
 
     public function getId(): ?int
@@ -148,5 +151,11 @@ class Questions
         }
 
         return $this;
+    }
+
+
+    public function __toString()
+    {
+        return $this->getTitle();
     }
 }

@@ -4,6 +4,7 @@ namespace App\Form;
 
 use App\Entity\Questions;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
@@ -14,9 +15,14 @@ class QuestionsType extends AbstractType
         $builder
             ->add('title')
             ->add('text')
-            ->add('category')
-            ->add('date')
-            ->add('users')
+            ->add('category', TextType::class,
+                [
+                    'attr'      =>
+                        [
+                            'list'          => 'category'
+                        ]
+                ]
+            )
         ;
     }
 
